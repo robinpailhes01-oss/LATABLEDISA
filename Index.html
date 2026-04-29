@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harmonie Yacht — Proposition Propriétaire</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B3A5C;
+  --navy-deep: #0d2135;
+  --gold: #C9A84C;
+  --gold-light: #D4B87A;
+  --ecru: #F5F0E8;
+  --white: #FFFFFF;
+  --muted: #6B7A8D;
+  --surface: #F8F6F2;
+  --border: rgba(201,168,76,0.2);
+}
+
+- { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:‘Jost’,sans-serif; background:var(–white); color:var(–navy); overflow-x:hidden; }
+
+/* PROGRESS */
+#prog { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(–gold),var(–gold-light)); width:0; z-index:1000; transition:width .1s; }
+
+/* NAV */
+nav {
+position:fixed; top:0; left:0; right:0; z-index:900;
+padding:22px 64px; display:flex; justify-content:space-between; align-items:center;
+transition:all .5s;
+}
+nav.s { background:rgba(255,255,255,.92); backdrop-filter:blur(20px); padding:14px 64px; border-bottom:1px solid rgba(201,168,76,.12); }
+.nav-logo { font-family:‘Cormorant Garamond’,serif; font-size:1rem; letter-spacing:.4em; text-transform:uppercase; color:var(–white); transition:color .5s; }
+nav.s .nav-logo { color:var(–navy); }
+.nav-tag { font-size:.58rem; letter-spacing:.25em; text-transform:uppercase; color:var(–gold); }
+
+/* HERO */
+.hero { height:100vh; min-height:680px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.hero-bg { position:absolute; inset:0; background:linear-gradient(160deg, #081929 0%, #1B3A5C 50%, #122843 100%); }
+.hero-noise { position:absolute; inset:0; opacity:.03; background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=’.9’ numOctaves=‘4’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’/%3E%3C/svg%3E”); background-size:200px; }
+.hero-orb { position:absolute; border-radius:50%; filter:blur(100px); }
+.orb1 { width:600px; height:600px; background:rgba(201,168,76,.1); top:-150px; right:-100px; animation:orb 15s ease-in-out infinite; }
+.orb2 { width:400px; height:400px; background:rgba(91,155,213,.08); bottom:-100px; left:-80px; animation:orb 18s ease-in-out infinite reverse; }
+@keyframes orb { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
+
+/* Animated lines */
+.hero-lines { position:absolute; inset:0; overflow:hidden; }
+.hero-lines span { position:absolute; display:block; width:1px; background:linear-gradient(to bottom,transparent,rgba(201,168,76,.15),transparent); animation:lineFall 8s linear infinite; }
+.hero-lines span:nth-child(1) { left:15%; height:200px; animation-delay:0s; animation-duration:9s; }
+.hero-lines span:nth-child(2) { left:35%; height:150px; animation-delay:2s; animation-duration:7s; }
+.hero-lines span:nth-child(3) { left:60%; height:180px; animation-delay:4s; animation-duration:11s; }
+.hero-lines span:nth-child(4) { left:80%; height:120px; animation-delay:1s; animation-duration:8s; }
+@keyframes lineFall { from{top:-200px;opacity:0} 20%{opacity:1} 80%{opacity:1} to{top:110%;opacity:0} }
+
+.hero-content { position:relative; z-index:2; text-align:center; padding:0 40px; opacity:0; transform:translateY(50px); animation:rise 1.2s cubic-bezier(.16,1,.3,1) .4s forwards; }
+@keyframes rise { to{opacity:1;transform:translateY(0)} }
+
+.hero-pill { display:inline-flex; align-items:center; gap:8px; font-size:.58rem; letter-spacing:.4em; text-transform:uppercase; color:var(–gold); border:1px solid rgba(201,168,76,.35); padding:7px 22px; border-radius:40px; margin-bottom:44px; }
+.pill-dot { width:5px; height:5px; border-radius:50%; background:var(–gold); animation:pulse 2s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.hero-h1 { font-family:‘Cormorant Garamond’,serif; font-size:clamp(3rem,7vw,6.5rem); font-weight:300; color:var(–white); line-height:1.05; letter-spacing:-.01em; margin-bottom:16px; }
+.hero-h1 em { font-style:italic; background:linear-gradient(135deg,var(–gold),var(–gold-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-sub { font-size:.7rem; letter-spacing:.5em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:56px; font-weight:200; }
+.hero-rule { width:50px; height:1px; background:linear-gradient(90deg,transparent,var(–gold),transparent); margin:0 auto 36px; }
+.hero-date { font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.25); }
+
+.scroll-cue { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; opacity:0; animation:fadeIn 1s 2s forwards; }
+@keyframes fadeIn { to{opacity:1} }
+.scroll-line { width:1px; height:48px; background:linear-gradient(to bottom,transparent,rgba(201,168,76,.5)); animation:grow 2s ease infinite; }
+@keyframes grow { 0%,100%{transform:scaleY(1);opacity:.5} 50%{transform:scaleY(1.4);opacity:1} }
+.scroll-txt { font-size:.55rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.25); }
+
+/* SECTIONS */
+section { padding:120px 0; }
+.container { max-width:960px; margin:0 auto; padding:0 64px; }
+
+/* REVEAL */
+.r { opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1); }
+.r.v { opacity:1; transform:none; }
+.d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s} .d5{transition-delay:.5s}
+
+/* TYPOGRAPHY */
+.label { font-size:.58rem; letter-spacing:.45em; text-transform:uppercase; color:var(–gold); margin-bottom:20px; }
+.h2 { font-family:‘Cormorant Garamond’,serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:var(–navy); line-height:1.15; margin-bottom:20px; }
+.h2 em { font-style:italic; color:var(–gold); }
+.body { font-size:.88rem; line-height:1.9; color:var(–muted); font-weight:300; max-width:600px; }
+.gold-line { width:36px; height:1px; background:var(–gold); margin:28px 0; }
+
+/* STATS BAND */
+.band { background:var(–navy); }
+.band-inner { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(201,168,76,.15); }
+.stat { background:var(–navy); padding:48px 32px; text-align:center; }
+.stat-n { font-family:‘Cormorant Garamond’,serif; font-size:2.8rem; font-weight:300; color:var(–white); line-height:1; margin-bottom:6px; }
+.stat-n span { color:var(–gold); }
+.stat-l { font-size:.58rem; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.35); }
+
+/* INTRO */
+.intro-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.intro-visual { position:relative; height:360px; }
+.iv-card { position:absolute; border-radius:4px; }
+.iv-main { width:260px; height:300px; top:0; left:0; background:linear-gradient(135deg,var(–navy),var(–navy-deep)); display:flex; flex-direction:column; justify-content:flex-end; padding:28px; }
+.iv-accent { width:160px; height:180px; bottom:0; right:0; background:linear-gradient(135deg,var(–gold),#9a6e20); display:flex; align-items:center; justify-content:center; }
+.iv-big { font-family:‘Cormorant Garamond’,serif; font-size:3.2rem; font-weight:300; color:var(–white); line-height:1; }
+.iv-small { font-size:.52rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:4px; }
+.iv-mono { font-family:‘Cormorant Garamond’,serif; font-size:3.5rem; color:rgba(255,255,255,.9); }
+
+/* OFFERS */
+.offers-bg { background:var(–surface); }
+.offers-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(–border); border:1px solid var(–border); border-radius:6px; overflow:hidden; margin-top:56px; }
+.offer { background:var(–white); padding:44px 36px; transition:all .4s cubic-bezier(.16,1,.3,1); cursor:default; }
+.offer:hover { background:var(–navy); transform:translateY(-3px); z-index:2; box-shadow:0 24px 60px rgba(27,58,92,.2); }
+.offer:hover .o-title,.offer:hover .o-desc,.offer:hover .o-feat { color:rgba(255,255,255,.8); }
+.offer:hover .o-price { color:var(–gold-light); }
+.offer:hover .o-tag { background:rgba(201,168,76,.15); color:var(–gold-light); }
+.offer:hover .o-div { background:rgba(255,255,255,.08); }
+.offer:hover .o-dot { background:var(–gold); }
+.o-num { font-family:‘Cormorant Garamond’,serif; font-size:.9rem; color:var(–gold); margin-bottom:20px; letter-spacing:.1em; }
+.o-title { font-family:‘Cormorant Garamond’,serif; font-size:1.5rem; font-weight:400; color:var(–navy); margin-bottom:6px; transition:color .4s; }
+.o-desc { font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(–muted); margin-bottom:24px; transition:color .4s; }
+.o-div { height:1px; background:rgba(201,168,76,.2); margin-bottom:20px; transition:background .4s; }
+.o-feats { list-style:none; margin-bottom:28px; }
+.o-feat { display:flex; align-items:flex-start; gap:10px; font-size:.78rem; line-height:1.6; color:var(–muted); margin-bottom:8px; transition:color .4s; }
+.o-dot { width:3px; height:3px; border-radius:50%; background:var(–gold); margin-top:7px; flex-shrink:0; transition:background .4s; }
+.o-price { font-family:‘Cormorant Garamond’,serif; font-size:1.9rem; font-weight:300; color:var(–navy); transition:color .4s; margin-bottom:4px; }
+.o-tag { display:inline-block; font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; background:var(–ecru); color:var(–gold); padding:4px 12px; border-radius:20px; transition:all .4s; }
+
+/* DIFFERENTIATORS */
+.diff-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(–border); border:1px solid var(–border); border-radius:6px; overflow:hidden; margin-top:56px; }
+.diff-item { background:var(–white); padding:40px 32px; }
+.diff-icon { font-size:1.4rem; margin-bottom:20px; }
+.diff-title { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; color:var(–navy); margin-bottom:10px; }
+.diff-body { font-size:.78rem; line-height:1.7; color:var(–muted); }
+
+/* COMPETITOR */
+.comp-section { background:var(–navy); }
+.comp-section .h2 { color:var(–white); }
+.comp-section .body { color:rgba(255,255,255,.45); }
+.comp-section .label { color:var(–gold); }
+.comp-section .gold-line { background:rgba(201,168,76,.3); }
+.comp-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; margin-top:56px; background:rgba(255,255,255,.05); }
+.comp-col { padding:40px 32px; }
+.comp-col:first-child { background:rgba(255,255,255,.03); }
+.comp-col:nth-child(2) { background:rgba(255,255,255,.03); }
+.comp-col:last-child { background:rgba(201,168,76,.06); border-top:2px solid var(–gold); }
+.comp-badge { font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; padding:5px 14px; border-radius:30px; display:inline-block; margin-bottom:24px; }
+.comp-col:not(:last-child) .comp-badge { background:rgba(255,255,255,.06); color:rgba(255,255,255,.3); }
+.comp-col:last-child .comp-badge { background:rgba(201,168,76,.15); color:var(–gold); }
+.comp-name { font-family:‘Cormorant Garamond’,serif; font-size:1.2rem; margin-bottom:8px; }
+.comp-col:not(:last-child) .comp-name { color:rgba(255,255,255,.5); }
+.comp-col:last-child .comp-name { color:var(–white); }
+.comp-row { display:flex; gap:10px; margin-bottom:10px; font-size:.75rem; line-height:1.5; }
+.comp-col:not(:last-child) .comp-row { color:rgba(255,255,255,.3); }
+.comp-col:last-child .comp-row { color:rgba(255,255,255,.7); }
+.ci { flex-shrink:0; margin-top:2px; }
+.ci-no { color:rgba(255,255,255,.2); }
+.ci-yes { color:var(–gold); }
+
+/* PARTNERSHIP — deux cas */
+.cases-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:56px; }
+.case-card { padding:52px 44px; position:relative; overflow:hidden; }
+.case-a { background:var(–surface); border:1px solid var(–border); }
+.case-b { background:var(–navy); }
+.case-card::before { content:’’; position:absolute; top:0; left:0; right:0; height:3px; }
+.case-a::before { background:rgba(201,168,76,.3); }
+.case-b::before { background:var(–gold); }
+.case-num { font-family:‘Cormorant Garamond’,serif; font-size:5rem; font-weight:300; line-height:1; margin-bottom:4px; }
+.case-a .case-num { color:rgba(27,58,92,.1); }
+.case-b .case-num { color:rgba(255,255,255,.1); }
+.case-badge { font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; padding:5px 14px; border-radius:30px; display:inline-block; margin-bottom:24px; }
+.case-a .case-badge { background:var(–ecru); color:var(–muted); }
+.case-b .case-badge { background:rgba(201,168,76,.15); color:var(–gold); }
+.case-title { font-family:‘Cormorant Garamond’,serif; font-size:1.4rem; margin-bottom:12px; }
+.case-a .case-title { color:var(–navy); }
+.case-b .case-title { color:var(–white); }
+.case-desc { font-size:.8rem; line-height:1.8; margin-bottom:28px; }
+.case-a .case-desc { color:var(–muted); }
+.case-b .case-desc { color:rgba(255,255,255,.5); }
+.case-rows { border-top:1px solid; padding-top:24px; }
+.case-a .case-rows { border-color:rgba(27,58,92,.08); }
+.case-b .case-rows { border-color:rgba(255,255,255,.08); }
+.case-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.case-row-label { font-size:.75rem; }
+.case-a .case-row-label { color:var(–muted); }
+.case-b .case-row-label { color:rgba(255,255,255,.4); }
+.case-row-val { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; }
+.case-a .case-row-val { color:var(–navy); }
+.case-b .case-row-val { color:var(–gold-light); }
+.case-highlight { margin-top:24px; padding:16px 20px; border-radius:4px; }
+.case-a .case-highlight { background:var(–ecru); }
+.case-b .case-highlight { background:rgba(201,168,76,.1); }
+.case-hl-label { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:4px; }
+.case-a .case-hl-label { color:var(–muted); }
+.case-b .case-hl-label { color:var(–gold); }
+.case-hl-val { font-family:‘Cormorant Garamond’,serif; font-size:1.8rem; }
+.case-a .case-hl-val { color:var(–navy); }
+.case-b .case-hl-val { color:var(–white); }
+
+/* ASSURANCE */
+.assur-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:56px; }
+.assur-card { padding:36px; border-radius:4px; border:1px solid var(–border); }
+.assur-card.featured { background:var(–ecru); border-color:rgba(201,168,76,.3); }
+.assur-who { font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:var(–gold); margin-bottom:16px; }
+.assur-title { font-family:‘Cormorant Garamond’,serif; font-size:1.2rem; color:var(–navy); margin-bottom:12px; }
+.assur-item { display:flex; gap:10px; margin-bottom:10px; font-size:.8rem; color:var(–muted); line-height:1.5; }
+.assur-check { color:var(–gold); flex-shrink:0; }
+.assur-cost { margin-top:20px; padding-top:16px; border-top:1px solid rgba(27,58,92,.08); }
+.assur-cost-label { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(–muted); }
+.assur-cost-val { font-family:‘Cormorant Garamond’,serif; font-size:1.4rem; color:var(–navy); }
+
+/* FORECAST */
+.fc-section { background:var(–surface); }
+.fc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(–border); border:1px solid var(–border); border-radius:6px; overflow:hidden; margin-top:56px; }
+.fc-card { background:var(–white); padding:44px 36px; }
+.fc-card.feat { background:var(–navy); }
+.fc-badge { font-size:.55rem; letter-spacing:.25em; text-transform:uppercase; padding:5px 14px; border-radius:30px; display:inline-block; margin-bottom:28px; }
+.fc-card:not(.feat) .fc-badge { background:var(–ecru); color:var(–muted); }
+.fc-card.feat .fc-badge { background:rgba(201,168,76,.15); color:var(–gold); }
+.fc-scenario { font-family:‘Cormorant Garamond’,serif; font-size:1.4rem; margin-bottom:6px; }
+.fc-card:not(.feat) .fc-scenario { color:var(–navy); }
+.fc-card.feat .fc-scenario { color:var(–white); }
+.fc-sub { font-size:.7rem; margin-bottom:32px; }
+.fc-card:not(.feat) .fc-sub { color:var(–muted); }
+.fc-card.feat .fc-sub { color:rgba(255,255,255,.35); }
+.fc-div { height:1px; margin-bottom:24px; }
+.fc-card:not(.feat) .fc-div { background:rgba(27,58,92,.07); }
+.fc-card.feat .fc-div { background:rgba(255,255,255,.07); }
+.fc-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.fc-rl { font-size:.75rem; }
+.fc-card:not(.feat) .fc-rl { color:var(–muted); }
+.fc-card.feat .fc-rl { color:rgba(255,255,255,.4); }
+.fc-rv { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; }
+.fc-card:not(.feat) .fc-rv { color:var(–navy); }
+.fc-card.feat .fc-rv { color:var(–gold-light); }
+.fc-total { margin-top:24px; padding:16px 20px; border-radius:4px; }
+.fc-card:not(.feat) .fc-total { background:var(–ecru); }
+.fc-card.feat .fc-total { background:rgba(201,168,76,.12); }
+.fc-tl { font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; color:var(–gold); margin-bottom:4px; }
+.fc-tv { font-family:‘Cormorant Garamond’,serif; font-size:2rem; }
+.fc-card:not(.feat) .fc-tv { color:var(–navy); }
+.fc-card.feat .fc-tv { color:var(–white); }
+
+/* TVA NOTE */
+.tva-note { margin-top:32px; padding:24px 28px; border-left:3px solid var(–gold); background:var(–ecru); border-radius:0 4px 4px 0; }
+.tva-title { font-family:‘Cormorant Garamond’,serif; font-size:1rem; color:var(–navy); margin-bottom:8px; }
+.tva-body { font-size:.78rem; line-height:1.75; color:var(–muted); }
+
+/* REVERSEMENT */
+.rev-section { background:var(–white); }
+.rev-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:56px; }
+.rev-block { padding:40px; border:1px solid var(–border); border-radius:4px; }
+.rev-block.gold { border-color:rgba(201,168,76,.4); background:var(–ecru); }
+.rev-title { font-family:‘Cormorant Garamond’,serif; font-size:1.2rem; color:var(–navy); margin-bottom:8px; }
+.rev-body { font-size:.8rem; line-height:1.75; color:var(–muted); margin-bottom:20px; }
+.rev-tag { display:inline-block; font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; background:rgba(201,168,76,.15); color:var(–gold); padding:4px 14px; border-radius:20px; }
+
+/* EXAMPLE STATEMENT */
+.statement { margin-top:40px; background:var(–navy); border-radius:6px; padding:40px; }
+.stmt-title { font-size:.58rem; letter-spacing:.35em; text-transform:uppercase; color:var(–gold); margin-bottom:24px; }
+.stmt-rows { display:grid; gap:0; }
+.stmt-row { display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+.stmt-row:last-child { border-bottom:none; }
+.stmt-label { font-size:.8rem; color:rgba(255,255,255,.4); }
+.stmt-val { font-family:‘Cormorant Garamond’,serif; font-size:1rem; }
+.stmt-val.pos { color:var(–gold-light); }
+.stmt-val.neg { color:rgba(255,255,255,.4); }
+.stmt-val.total { color:var(–white); font-size:1.3rem; }
+
+/* NO CAUTION */
+.nocaution { background:var(–navy); padding:80px 0; }
+.nc-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.nc-number { font-family:‘Cormorant Garamond’,serif; font-size:6rem; font-weight:300; color:rgba(255,255,255,.08); line-height:1; }
+.nc-number span { color:var(–gold); opacity:.6; }
+.nc-title { font-family:‘Cormorant Garamond’,serif; font-size:2rem; font-weight:300; color:var(–white); margin-bottom:12px; }
+.nc-body { font-size:.82rem; line-height:1.8; color:rgba(255,255,255,.45); }
+.nc-vs { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:28px; }
+.nc-vs-item { padding:16px; border-radius:4px; }
+.nc-vs-item.bad { background:rgba(255,255,255,.04); }
+.nc-vs-item.good { background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.2); }
+.nc-vs-label { font-size:.56rem; letter-spacing:.25em; text-transform:uppercase; margin-bottom:6px; }
+.bad .nc-vs-label { color:rgba(255,255,255,.2); }
+.good .nc-vs-label { color:var(–gold); }
+.nc-vs-val { font-size:.82rem; }
+.bad .nc-vs-val { color:rgba(255,255,255,.3); }
+.good .nc-vs-val { color:rgba(255,255,255,.7); }
+
+/* TIMELINE */
+.tl { position:relative; padding-left:36px; margin-top:56px; }
+.tl::before { content:’’; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:linear-gradient(to bottom,var(–gold),rgba(201,168,76,.1)); }
+.tl-item { position:relative; padding:0 0 44px 36px; opacity:0; transform:translateX(-16px); transition:opacity .6s,transform .6s; }
+.tl-item.v { opacity:1; transform:none; }
+.tl-dot { position:absolute; left:-5px; top:6px; width:11px; height:11px; border-radius:50%; border:2px solid var(–gold); background:var(–white); transition:background .3s; }
+.tl-item:hover .tl-dot { background:var(–gold); }
+.tl-date { font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:var(–gold); margin-bottom:6px; }
+.tl-action { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; color:var(–navy); margin-bottom:4px; }
+.tl-who { font-size:.75rem; color:var(–muted); }
+
+/* CLOSING */
+.closing { background:var(–navy); padding:160px 0; text-align:center; position:relative; overflow:hidden; }
+.closing-q { font-family:‘Cormorant Garamond’,serif; font-size:clamp(1.6rem,3.5vw,2.8rem); font-weight:300; font-style:italic; color:var(–white); max-width:580px; margin:0 auto 36px; line-height:1.4; }
+.closing-tag { font-size:.62rem; letter-spacing:.5em; text-transform:uppercase; color:var(–gold); margin-bottom:56px; }
+.closing-contact { font-size:.72rem; letter-spacing:.15em; color:rgba(255,255,255,.25); line-height:2.2; }
+
+footer { background:#081929; padding:36px 64px; display:flex; justify-content:space-between; align-items:center; }
+.f-brand { font-family:‘Cormorant Garamond’,serif; font-size:.85rem; letter-spacing:.35em; text-transform:uppercase; color:rgba(255,255,255,.25); }
+.f-note { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.12); }
+
+@media(max-width:768px) {
+nav,nav.s { padding:14px 24px; }
+.container { padding:0 24px; }
+section { padding:80px 0; }
+.band-inner,.intro-grid,.offers-grid,.comp-grid,.cases-grid,.assur-grid,.fc-grid,.rev-grid,.nc-inner,.diff-grid { grid-template-columns:1fr; }
+.intro-visual { height:220px; }
+footer { flex-direction:column; gap:10px; text-align:center; }
+}
+</style>
+
+</head>
+<body>
+
+<div id="prog"></div>
+
+<nav id="nav">
+  <div class="nav-logo">Harmonie Yacht</div>
+  <div class="nav-tag">Proposition Propriétaire · Confidentiel</div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-lines"><span></span><span></span><span></span><span></span></div>
+  <div class="hero-content">
+    <div class="hero-pill"><div class="pill-dot"></div>Proposition Partenariat · Saison 2025</div>
+    <h1 class="hero-h1">Votre semi-rigide<br><em>travaille pour vous</em><br>cet été.</h1>
+    <div class="hero-sub">Juin · Juillet · Août — Côte Méditerranéenne</div>
+    <div class="hero-rule"></div>
+    <div class="hero-date">Harmonie Group SASU · Document confidentiel</div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-txt">Découvrir</div><div class="scroll-line"></div></div>
+</section>
+
+<!-- BAND -->
+
+<div class="band">
+  <div class="container">
+    <div class="band-inner">
+      <div class="stat r"><div class="stat-n"><span class="cu" data-t="75">0</span></div><div class="stat-l">Jours d'exploitation</div></div>
+      <div class="stat r d2"><div class="stat-n"><span class="cu" data-t="6">0</span></div><div class="stat-l">Soirées feux d'artifice garanties</div></div>
+      <div class="stat r d3"><div class="stat-n"><span class="cu" data-t="0">0</span><span>€</span></div><div class="stat-l">Caution demandée aux clients</div></div>
+      <div class="stat r d4"><div class="stat-n"><span class="cu" data-t="3">0</span></div><div class="stat-l">Mois de revenus garantis</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- QUI SOMMES NOUS -->
+
+<section>
+  <div class="container">
+    <div class="intro-grid">
+      <div>
+        <div class="label r">Harmonie Yacht</div>
+        <h2 class="h2 r d1">L'expérience nautique<br><em>premium</em> à Carnon.</h2>
+        <div class="gold-line r d2"></div>
+        <p class="body r d2">Harmonie Yacht est une marque premium d'expériences nautiques méditerranéennes, opérée par Harmonie Group SASU. Notre positionnement : le luxe accessible — chic, chaleureux, mémorable.</p>
+        <p class="body r d3" style="margin-top:14px">Nous ne proposons pas une simple location de bateau. Nous vendons des <strong style="color:var(--navy);font-weight:500">expériences guidées</strong> avec une monitrice professionnelle à bord — accessible à tous, sans permis requis côté client.</p>
+        <p class="body r d4" style="margin-top:14px">C'est ce qui nous distingue radicalement de la concurrence locale — et c'est ce qui justifie nos tarifs premium.</p>
+      </div>
+      <div class="intro-visual r d2">
+        <div class="iv-card iv-main">
+          <div class="iv-big">HY</div>
+          <div class="iv-small">Harmonie Yacht · Est. 2024</div>
+        </div>
+        <div class="iv-card iv-accent">
+          <div class="iv-mono">✦</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERSUS CONCURRENCE -->
+
+<section class="comp-section">
+  <div class="container">
+    <div class="label r">Analyse de marché</div>
+    <h2 class="h2 r d1">Pourquoi nous sommes<br><em>différents</em>.</h2>
+    <div class="gold-line r d2"></div>
+    <p class="body r d2">La concurrence locale loue des outils. Nous vendons des moments. La différence est fondamentale — et se traduit directement dans les tarifs.</p>
+
+```
+<div class="comp-grid r d2">
+  <div class="comp-col">
+    <div class="comp-badge">Concurrent</div>
+    <div class="comp-name">Ô Boat</div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Permis obligatoire côté client</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Monitrice non incluse</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Caution jusqu'à 3 000€</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Bouée tractée en option basique</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Aucun service à bord</span></div>
+    <div style="margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:rgba(255,255,255,.2);">160–360€</div>
+  </div>
+  <div class="comp-col">
+    <div class="comp-badge">Concurrent</div>
+    <div class="comp-name">Rent My Boat</div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Permis obligatoire côté client</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Aucun encadrement</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Caution jusqu'à 3 000€</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Grille tarifaire froide, aucune émotion</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕</span><span>Aucune offre événementielle</span></div>
+    <div style="margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:rgba(255,255,255,.2);">140–579€</div>
+  </div>
+  <div class="comp-col">
+    <div class="comp-badge">⭑ Harmonie Yacht</div>
+    <div class="comp-name">Notre offre</div>
+    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Aucun permis requis côté client</span></div>
+    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Monitrice professionnelle RC Pro à bord</span></div>
+    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Zéro caution — friction zéro</span></div>
+    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Sessions wake & bouée encadrées</span></div>
+    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Options food La Table d'Isa</span></div>
+    <div style="margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);">260–390€</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- OFFRES -->
+
+<section class="offers-bg">
+  <div class="container">
+    <div class="label r">Les offres</div>
+    <h2 class="h2 r d1">Quatre formats,<br>une seule <em>ambition</em>.</h2>
+    <p class="body r d2">Une gamme resserrée, lisible, pensée pour maximiser le taux de remplissage sur la saison juin-août.</p>
+
+```
+<div class="offers-grid r d2">
+  <div class="offer">
+    <div class="o-num">01</div>
+    <div class="o-title">Session Sensations</div>
+    <div class="o-desc">2h · Bouée tractée & Wake encadrés</div>
+    <div class="o-div"></div>
+    <ul class="o-feats">
+      <li class="o-feat"><div class="o-dot"></div>Monitrice professionnelle à bord</li>
+      <li class="o-feat"><div class="o-dot"></div>Bouée tractée + wakeboard inclus</li>
+      <li class="o-feat"><div class="o-dot"></div>Aucun permis requis — ouvert à tous</li>
+      <li class="o-feat"><div class="o-dot"></div>Zéro caution</li>
+    </ul>
+    <div class="o-price">280€</div>
+    <div class="o-tag">/ groupe · 6 pers. max</div>
+  </div>
+
+  <div class="offer">
+    <div class="o-num">02</div>
+    <div class="o-title">Escapade Méditerranée</div>
+    <div class="o-desc">4h · Balade + sensations + baignade</div>
+    <div class="o-div"></div>
+    <ul class="o-feats">
+      <li class="o-feat"><div class="o-dot"></div>2 spots de baignade à la carte</li>
+      <li class="o-feat"><div class="o-dot"></div>1 session bouée tractée incluse</li>
+      <li class="o-feat"><div class="o-dot"></div>Option planche La Table d'Isa +35€</li>
+      <li class="o-feat"><div class="o-dot"></div>Monitrice dédiée tout au long</li>
+    </ul>
+    <div class="o-price">390€</div>
+    <div class="o-tag">/ groupe · 6 pers. max</div>
+  </div>
+
+  <div class="offer">
+    <div class="o-num">03</div>
+    <div class="o-title">Sunset & Wake</div>
+    <div class="o-desc">2h · L'heure dorée en mer</div>
+    <div class="o-div"></div>
+    <ul class="o-feats">
+      <li class="o-feat"><div class="o-dot"></div>Départ 19h — coucher de soleil</li>
+      <li class="o-feat"><div class="o-dot"></div>Session wake en fin de journée</li>
+      <li class="o-feat"><div class="o-dot"></div>Bouteille rosé La Table d'Isa incluse</li>
+      <li class="o-feat"><div class="o-dot"></div>Le format le plus instagrammable</li>
+    </ul>
+    <div class="o-price">260€</div>
+    <div class="o-tag">/ groupe · 6 pers. max</div>
+  </div>
+
+  <div class="offer">
+    <div class="o-num">04</div>
+    <div class="o-title">Soirée Feux d'Artifice</div>
+    <div class="o-desc">2h nocturne · 6 soirs garantis</div>
+    <div class="o-div"></div>
+    <ul class="o-feats">
+      <li class="o-feat"><div class="o-dot"></div>Meilleur spot de vue garanti</li>
+      <li class="o-feat"><div class="o-dot"></div>Bouteille offerte à bord</li>
+      <li class="o-feat"><div class="o-dot"></div>Réservation obligatoire — créneaux limités</li>
+      <li class="o-feat"><div class="o-dot"></div>Taux de remplissage 100% garanti</li>
+    </ul>
+    <div class="o-price">300€</div>
+    <div class="o-tag">/ groupe · 6 pers. max</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- NO CAUTION -->
+
+<div class="nocaution">
+  <div class="container">
+    <div class="nc-inner">
+      <div>
+        <div class="nc-number r"><span>0</span>€</div>
+      </div>
+      <div class="r d2">
+        <div class="label" style="color:var(--gold)">Notre argument clé</div>
+        <div class="nc-title">Zéro caution.<br>Zéro friction.</div>
+        <p class="nc-body">La concurrence demande entre 1 500€ et 3 000€ de caution. C'est la première raison d'abandon d'une réservation. Nous avons supprimé cette barrière — ce qui se traduit directement par un taux de conversion supérieur et donc plus de jours réservés pour votre bateau.</p>
+        <div class="nc-vs">
+          <div class="nc-vs-item bad">
+            <div class="nc-vs-label">Concurrents</div>
+            <div class="nc-vs-val">1 500 – 3 000€ de caution bloquée</div>
+          </div>
+          <div class="nc-vs-item good">
+            <div class="nc-vs-label">Harmonie Yacht</div>
+            <div class="nc-vs-val">0€ — réservation immédiate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LES DEUX CAS -->
+
+<section>
+  <div class="container">
+    <div class="label r">Structure du partenariat</div>
+    <h2 class="h2 r d1">Deux modèles.<br>Vous <em>choisissez</em>.</h2>
+    <div class="gold-line r d2"></div>
+    <p class="body r d2">Nous vous proposons deux façons de structurer notre collaboration. Chacune a ses avantages selon votre profil et votre appétit au risque.</p>
+
+```
+<div class="cases-grid r d2">
+  <div class="case-card case-a">
+    <div class="case-num">01</div>
+    <div class="case-badge">Mandat de gestion</div>
+    <div class="case-title">Partage du CA — 50/50 → 60/40</div>
+    <p class="case-desc">Harmonie Yacht gère tout en votre nom. On encaisse, on déduit notre commission, on vous reverse le solde chaque mois avec un relevé détaillé. Votre revenu varie selon le volume.</p>
+    <div class="case-rows">
+      <div class="case-row"><span class="case-row-label">Phase lancement (dès J1)</span><span class="case-row-val">50 % du CA HT</span></div>
+      <div class="case-row"><span class="case-row-label">Phase croissance (30+ jours réservés)</span><span class="case-row-val">40 % du CA HT</span></div>
+      <div class="case-row"><span class="case-row-label">Reversement</span><span class="case-row-val">Mensuel</span></div>
+      <div class="case-row"><span class="case-row-label">Risque saison creuse</span><span class="case-row-val">Partagé</span></div>
+    </div>
+    <div class="case-highlight">
+      <div class="case-hl-label">Potentiel saison (scénario réaliste)</div>
+      <div class="case-hl-val">8 000 – 12 000€</div>
+    </div>
+  </div>
+
+  <div class="case-card case-b">
+    <div class="case-num">02</div>
+    <div class="case-badge">⭑ Sous-location — Recommandé</div>
+    <div class="case-title">Loyer fixe garanti</div>
+    <p class="case-desc">Harmonie Yacht vous loue le bateau à un tarif fixe journalier sur les jours d'exploitation. Vous touchez votre loyer que le bateau soit plein ou non. Revenu prévisible, risque zéro.</p>
+    <div class="case-rows">
+      <div class="case-row"><span class="case-row-label">Loyer journalier</span><span class="case-row-val" style="color:var(--gold);font-style:italic">À définir ensemble</span></div>
+      <div class="case-row"><span class="case-row-label">Jours d'exploitation prévus</span><span class="case-row-val">~75 jours</span></div>
+      <div class="case-row"><span class="case-row-label">Versement</span><span class="case-row-val">Mensuel, fixe</span></div>
+      <div class="case-row"><span class="case-row-label">Risque saison creuse</span><span class="case-row-val">Zéro pour vous</span></div>
+    </div>
+    <div class="case-highlight">
+      <div class="case-hl-label">Revenu garanti saison 3 mois</div>
+      <div class="case-hl-val" style="font-size:1.2rem;font-style:italic;opacity:.7">À convenir lors de notre échange</div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ASSURANCES -->
+
+<section style="background:var(--surface);padding:100px 0;">
+  <div class="container">
+    <div class="label r">Assurances</div>
+    <h2 class="h2 r d1">Ce que chacun<br><em>prend en charge</em>.</h2>
+    <div class="gold-line r d2"></div>
+    <p class="body r d2">La répartition est simple et équitable. Vous gardez la couverture de votre bien, nous gérons la couverture de l'exploitation.</p>
+
+```
+<div class="assur-grid r d2">
+  <div class="assur-card featured">
+    <div class="assur-who">Votre responsabilité</div>
+    <div class="assur-title">Assurance coque — à modifier</div>
+    <div class="assur-item"><span class="assur-check">→</span><span>Votre assurance plaisance actuelle reste en place</span></div>
+    <div class="assur-item"><span class="assur-check">→</span><span>Ajouter un avenant <strong>"location coque nue par agence professionnelle"</strong> auprès de votre assureur</span></div>
+    <div class="assur-item"><span class="assur-check">→</span><span>Simple appel à votre assureur actuel — démarche de 10 minutes</span></div>
+    <div class="assur-cost">
+      <div class="assur-cost-label">Surcoût estimé</div>
+      <div class="assur-cost-val">+20 à 30 % de votre prime annuelle</div>
+    </div>
+  </div>
+
+  <div class="assur-card">
+    <div class="assur-who">Notre responsabilité</div>
+    <div class="assur-title">RC Exploitation — prise en charge totale</div>
+    <div class="assur-item"><span class="assur-check" style="color:var(--gold)">→</span><span>Harmonie Yacht souscrit la RC exploitation couvrant les activités à bord</span></div>
+    <div class="assur-item"><span class="assur-check" style="color:var(--gold)">→</span><span>La monitrice dispose de sa propre RC Pro couvrant les sessions wake & bouée tractée</span></div>
+    <div class="assur-item"><span class="assur-check" style="color:var(--gold)">→</span><span>Vous fournissez une attestation d'assurance coque valide — c'est tout</span></div>
+    <div class="assur-cost">
+      <div class="assur-cost-label">Coût pour vous</div>
+      <div class="assur-cost-val" style="color:var(--gold)">0€ supplémentaire</div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- PRÉVISIONNEL -->
+
+<section class="fc-section">
+  <div class="container">
+    <div class="label r">Prévisionnel financier</div>
+    <h2 class="h2 r d1">Ce que vous gagnez<br>selon le <em>scénario</em>.</h2>
+    <div class="gold-line r d2"></div>
+    <p class="body r d2">Juin → Août uniquement. Base : panier moyen 310€ HT / groupe, 2 sorties par jour, 6 soirées feux d'artifice garanties, ~75 jours d'exploitation.</p>
+
+```
+<div class="fc-grid r d2">
+  <div class="fc-card">
+    <div class="fc-badge">Cas 1 — Mandat de gestion</div>
+    <div class="fc-scenario">Scénario plancher</div>
+    <div class="fc-sub">20 jours réservés · 1,5 sortie/j moy.</div>
+    <div class="fc-div"></div>
+    <div class="fc-row"><span class="fc-rl">CA HT total estimé</span><span class="fc-rv">9 300€</span></div>
+    <div class="fc-row"><span class="fc-rl">Palier atteint</span><span class="fc-rv">50/50</span></div>
+    <div class="fc-row"><span class="fc-rl">Votre part (50%)</span><span class="fc-rv">4 650€</span></div>
+    <div class="fc-total">
+      <div class="fc-tl">Votre revenu net estimé</div>
+      <div class="fc-tv">~4 650€</div>
+    </div>
+  </div>
+
+  <div class="fc-card feat">
+    <div class="fc-badge">Cas 2 — Loyer fixe · Recommandé</div>
+    <div class="fc-scenario">Revenu garanti</div>
+    <div class="fc-sub">Quel que soit le remplissage</div>
+    <div class="fc-div"></div>
+    <div class="fc-row"><span class="fc-rl">Loyer journalier</span><span class="fc-rv" style="font-style:italic;opacity:.6">À définir</span></div>
+    <div class="fc-row"><span class="fc-rl">Risque pour vous</span><span class="fc-rv">Zéro</span></div>
+    <div class="fc-row"><span class="fc-rl">Effort de gestion</span><span class="fc-rv">Zéro</span></div>
+    <div class="fc-total">
+      <div class="fc-tl">Votre revenu net garanti</div>
+      <div class="fc-tv" style="font-size:1.1rem;font-style:italic;opacity:.65">À convenir ensemble</div>
+    </div>
+  </div>
+
+  <div class="fc-card">
+    <div class="fc-badge">Cas 1 — Mandat · Scénario réaliste</div>
+    <div class="fc-scenario">40 jours réservés</div>
+    <div class="fc-sub">2 sorties/j · palier 60/40 atteint</div>
+    <div class="fc-div"></div>
+    <div class="fc-row"><span class="fc-rl">CA HT total estimé</span><span class="fc-rv">24 800€</span></div>
+    <div class="fc-row"><span class="fc-rl">Palier atteint</span><span class="fc-rv">60/40 ✓</span></div>
+    <div class="fc-row"><span class="fc-rl">Votre part (40%)</span><span class="fc-rv">9 920€</span></div>
+    <div class="fc-total">
+      <div class="fc-tl">Votre revenu net estimé</div>
+      <div class="fc-tv">~9 920€</div>
+    </div>
+  </div>
+
+  <div class="fc-card">
+    <div class="fc-badge">Cas 1 — Mandat · Scénario optimiste</div>
+    <div class="fc-scenario">60 jours réservés</div>
+    <div class="fc-sub">2,5 sorties/j · pleine saison</div>
+    <div class="fc-div"></div>
+    <div class="fc-row"><span class="fc-rl">CA HT total estimé</span><span class="fc-rv">46 500€</span></div>
+    <div class="fc-row"><span class="fc-rl">Palier atteint</span><span class="fc-rv">60/40 ✓</span></div>
+    <div class="fc-row"><span class="fc-rl">Votre part (40%)</span><span class="fc-rv">18 600€</span></div>
+    <div class="fc-total">
+      <div class="fc-tl">Votre revenu net estimé</div>
+      <div class="fc-tv">~18 600€</div>
+    </div>
+  </div>
+</div>
+
+<div class="tva-note r d2">
+  <div class="tva-title">Note fiscale — TVA & reversement</div>
+  <p class="tva-body">Harmonie Yacht collecte la TVA à 20% sur les prestations clients et la reverse à l'État — elle ne rentre pas dans la base de partage. Tous les montants ci-dessus sont calculés sur le CA <strong>hors taxes</strong>. En tant que particulier, vous n'êtes pas assujetti à la TVA sur votre part. Vous déclarez simplement ces revenus en BIC (Bénéfices Industriels et Commerciaux) dans votre déclaration annuelle.</p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- REVERSEMENT -->
+
+<section class="rev-section">
+  <div class="container">
+    <div class="label r">Modalités de reversement</div>
+    <h2 class="h2 r d1">Transparent,<br><em>mensuel</em>, sans friction.</h2>
+    <div class="gold-line r d2"></div>
+    <p class="body r d2">Chaque mois de saison, vous recevez un virement accompagné d'un relevé simple. Vous savez exactement ce qui s'est passé.</p>
+
+```
+<div class="rev-grid r d2">
+  <div class="rev-block">
+    <div class="rev-title">Cas 1 — Mandat de gestion</div>
+    <p class="rev-body">Harmonie Yacht vous envoie un relevé mensuel détaillant chaque sortie effectuée, le CA HT encaissé, la déduction de commission, et le net à vous reverser. Virement en J+5 après clôture du mois.</p>
+    <div class="rev-tag">Relevé de mandat mensuel</div>
+  </div>
+  <div class="rev-block gold">
+    <div class="rev-title">Cas 2 — Loyer fixe</div>
+    <p class="rev-body">Vous émettez une facture de location simple à Harmonie Yacht chaque mois (ou en début de saison pour les 3 mois). Pas de TVA de votre côté en tant que particulier. Virement à date fixe convenue.</p>
+    <div class="rev-tag">Facture mensuelle simple</div>
+  </div>
+</div>
+
+<div class="statement r d3">
+  <div class="stmt-title">Exemple de relevé mensuel — Juillet (Cas 1)</div>
+  <div class="stmt-rows">
+    <div class="stmt-row"><span class="stmt-label">Sorties effectuées</span><span class="stmt-val pos">18 sorties</span></div>
+    <div class="stmt-row"><span class="stmt-label">CA HT encaissé</span><span class="stmt-val pos">5 580€ HT</span></div>
+    <div class="stmt-row"><span class="stmt-label">TVA collectée (reversée à l'État)</span><span class="stmt-val neg">−1 116€</span></div>
+    <div class="stmt-row"><span class="stmt-label">Commission Harmonie Yacht (50%)</span><span class="stmt-val neg">−2 790€</span></div>
+    <div class="stmt-row"><span class="stmt-label" style="color:rgba(255,255,255,.7);font-weight:500">NET À VOUS REVERSER</span><span class="stmt-val total">2 790€</span></div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- TIMELINE -->
+
+<section style="background:var(--surface);padding:100px 0;">
+  <div class="container">
+    <div class="label r">Calendrier</div>
+    <h2 class="h2 r d1">De la signature<br>au <em>premier départ</em>.</h2>
+    <div class="gold-line r d2"></div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Semaine 1</div><div class="tl-action">Validation du modèle & signature du contrat</div><div class="tl-who">Harmonie Yacht + Vous</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Semaine 2</div><div class="tl-action">Modification de votre avenant assurance</div><div class="tl-who">Votre assureur — démarche simple</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Semaine 3</div><div class="tl-action">Shooting photo & vidéo du semi-rigide</div><div class="tl-who">Harmonie Yacht — à votre convenance</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Semaine 4</div><div class="tl-action">Mise en ligne des offres & ouverture des réservations</div><div class="tl-who">Harmonie Yacht</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">1er Juin 2025</div><div class="tl-action">Lancement de la saison — première sortie officielle</div><div class="tl-who" style="color:var(--gold)">Ensemble 🥂</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+
+<section class="closing">
+  <div class="orb1 hero-orb"></div>
+  <div class="orb2 hero-orb"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <p class="closing-q r">"Votre bateau a une valeur. Faites-la travailler — sans effort de votre part."</p>
+    <div class="closing-tag r d2">Where the sea meets elegance.</div>
+    <div class="gold-line r d3" style="margin:0 auto 48px;"></div>
+    <div class="closing-contact r d3">
+      Harmonie Group SASU · 61 Rue du Rouet, 13008 Marseille<br>
+      contact@harmonieyacht.fr · harmonieyacht.fr · @harmonieyacht<br>
+      Ludivine Cadot · Directrice des opérations
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-brand">Harmonie Yacht</div>
+  <div class="f-note">Document confidentiel · Saison 2025</div>
+</footer>
+
+<script>
+// Progress bar
+const prog = document.getElementById('prog');
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  prog.style.width = pct + '%';
+  nav.classList.toggle('s', window.scrollY > 60);
+}, {passive:true});
+
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('v'); obs.unobserve(e.target); } });
+}, {threshold:.1});
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+// Count up
+function countUp(el, target, dur=1600) {
+  const start = performance.now();
+  const tick = now => {
+    const p = Math.min((now-start)/dur,1);
+    const e = 1-Math.pow(1-p,3);
+    el.textContent = Math.round(e*target);
+    if(p<1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+const cuObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { countUp(e.target,+e.target.dataset.t); cuObs.unobserve(e.target); } });
+}, {threshold:.5});
+document.querySelectorAll('.cu').forEach(el => cuObs.observe(el));
+
+// Timeline stagger
+const tlItems = document.querySelectorAll('.tl-item');
+const tlObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { tlItems.forEach((item,i) => setTimeout(()=>item.classList.add('v'),i*150)); tlObs.disconnect(); } });
+}, {threshold:.1});
+const tl = document.querySelector('.tl');
+if(tl) tlObs.observe(tl);
+</script>
+
+</body>
+</html>
