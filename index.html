@@ -21,10 +21,10 @@
 
 - { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { font-family:‘Jost’,sans-serif; background:var(–white); color:var(–navy); overflow-x:hidden; }
+  body { font-family:‘Jost’,sans-serif; background:#FFFFFF; color:#1B3A5C; overflow-x:hidden; }
 
 /* PROGRESS */
-#prog { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(–gold),var(–gold-light)); width:0; z-index:1000; transition:width .1s; }
+#prog { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,#C9A84C,#D4B87A); width:0; z-index:1000; transition:width .1s; }
 
 /* NAV */
 nav {
@@ -33,14 +33,14 @@ padding:22px 64px; display:flex; justify-content:space-between; align-items:cent
 transition:all .5s;
 }
 nav.s { background:rgba(255,255,255,.92); backdrop-filter:blur(20px); padding:14px 64px; border-bottom:1px solid rgba(201,168,76,.12); }
-.nav-logo { font-family:‘Cormorant Garamond’,serif; font-size:1rem; letter-spacing:.4em; text-transform:uppercase; color:var(–white); transition:color .5s; }
-nav.s .nav-logo { color:var(–navy); }
-.nav-tag { font-size:.58rem; letter-spacing:.25em; text-transform:uppercase; color:var(–gold); }
+.nav-logo { font-family:‘Cormorant Garamond’,serif; font-size:1rem; letter-spacing:.4em; text-transform:uppercase; color:#FFFFFF; transition:color .5s; }
+nav.s .nav-logo { color:#1B3A5C; }
+.nav-tag { font-size:.58rem; letter-spacing:.25em; text-transform:uppercase; color:#C9A84C; }
 
 /* HERO */
 .hero { height:100vh; min-height:680px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .hero-bg { position:absolute; inset:0; background:linear-gradient(160deg, #081929 0%, #1B3A5C 50%, #122843 100%); }
-.hero-noise { position:absolute; inset:0; opacity:.03; background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=’.9’ numOctaves=‘4’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’/%3E%3C/svg%3E”); background-size:200px; }
+.hero-noise { position:absolute; inset:0; opacity:.03;  }
 .hero-orb { position:absolute; border-radius:50%; filter:blur(100px); }
 .orb1 { width:600px; height:600px; background:rgba(201,168,76,.1); top:-150px; right:-100px; animation:orb 15s ease-in-out infinite; }
 .orb2 { width:400px; height:400px; background:rgba(91,155,213,.08); bottom:-100px; left:-80px; animation:orb 18s ease-in-out infinite reverse; }
@@ -58,14 +58,14 @@ nav.s .nav-logo { color:var(–navy); }
 .hero-content { position:relative; z-index:2; text-align:center; padding:0 40px; opacity:0; transform:translateY(50px); animation:rise 1.2s cubic-bezier(.16,1,.3,1) .4s forwards; }
 @keyframes rise { to{opacity:1;transform:translateY(0)} }
 
-.hero-pill { display:inline-flex; align-items:center; gap:8px; font-size:.58rem; letter-spacing:.4em; text-transform:uppercase; color:var(–gold); border:1px solid rgba(201,168,76,.35); padding:7px 22px; border-radius:40px; margin-bottom:44px; }
-.pill-dot { width:5px; height:5px; border-radius:50%; background:var(–gold); animation:pulse 2s ease infinite; }
+.hero-pill { display:inline-flex; align-items:center; gap:8px; font-size:.58rem; letter-spacing:.4em; text-transform:uppercase; color:#C9A84C; border:1px solid rgba(201,168,76,.35); padding:7px 22px; border-radius:40px; margin-bottom:44px; }
+.pill-dot { width:5px; height:5px; border-radius:50%; background:#C9A84C; animation:pulse 2s ease infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-.hero-h1 { font-family:‘Cormorant Garamond’,serif; font-size:clamp(3rem,7vw,6.5rem); font-weight:300; color:var(–white); line-height:1.05; letter-spacing:-.01em; margin-bottom:16px; }
-.hero-h1 em { font-style:italic; background:linear-gradient(135deg,var(–gold),var(–gold-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-h1 { font-family:‘Cormorant Garamond’,serif; font-size:clamp(3rem,7vw,6.5rem); font-weight:300; color:#FFFFFF; line-height:1.05; letter-spacing:-.01em; margin-bottom:16px; }
+.hero-h1 em { font-style:italic; background:linear-gradient(135deg,#C9A84C,#D4B87A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .hero-sub { font-size:.7rem; letter-spacing:.5em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:56px; font-weight:200; }
-.hero-rule { width:50px; height:1px; background:linear-gradient(90deg,transparent,var(–gold),transparent); margin:0 auto 36px; }
+.hero-rule { width:50px; height:1px; background:linear-gradient(90deg,transparent,#C9A84C,transparent); margin:0 auto 36px; }
 .hero-date { font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.25); }
 
 .scroll-cue { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; opacity:0; animation:fadeIn 1s 2s forwards; }
@@ -84,197 +84,197 @@ section { padding:120px 0; }
 .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s} .d5{transition-delay:.5s}
 
 /* TYPOGRAPHY */
-.label { font-size:.58rem; letter-spacing:.45em; text-transform:uppercase; color:var(–gold); margin-bottom:20px; }
-.h2 { font-family:‘Cormorant Garamond’,serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:var(–navy); line-height:1.15; margin-bottom:20px; }
-.h2 em { font-style:italic; color:var(–gold); }
-.body { font-size:.88rem; line-height:1.9; color:var(–muted); font-weight:300; max-width:600px; }
-.gold-line { width:36px; height:1px; background:var(–gold); margin:28px 0; }
+.label { font-size:.58rem; letter-spacing:.45em; text-transform:uppercase; color:#C9A84C; margin-bottom:20px; }
+.h2 { font-family:‘Cormorant Garamond’,serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:#1B3A5C; line-height:1.15; margin-bottom:20px; }
+.h2 em { font-style:italic; color:#C9A84C; }
+.body { font-size:.88rem; line-height:1.9; color:#6B7A8D; font-weight:300; max-width:600px; }
+.gold-line { width:36px; height:1px; background:#C9A84C; margin:28px 0; }
 
 /* STATS BAND */
-.band { background:var(–navy); }
+.band { background:#1B3A5C; }
 .band-inner { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(201,168,76,.15); }
-.stat { background:var(–navy); padding:48px 32px; text-align:center; }
-.stat-n { font-family:‘Cormorant Garamond’,serif; font-size:2.8rem; font-weight:300; color:var(–white); line-height:1; margin-bottom:6px; }
-.stat-n span { color:var(–gold); }
+.stat { background:#1B3A5C; padding:48px 32px; text-align:center; }
+.stat-n { font-family:‘Cormorant Garamond’,serif; font-size:2.8rem; font-weight:300; color:#FFFFFF; line-height:1; margin-bottom:6px; }
+.stat-n span { color:#C9A84C; }
 .stat-l { font-size:.58rem; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.35); }
 
 /* INTRO */
 .intro-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
 .intro-visual { position:relative; height:360px; }
 .iv-card { position:absolute; border-radius:4px; }
-.iv-main { width:260px; height:300px; top:0; left:0; background:linear-gradient(135deg,var(–navy),var(–navy-deep)); display:flex; flex-direction:column; justify-content:flex-end; padding:28px; }
-.iv-accent { width:160px; height:180px; bottom:0; right:0; background:linear-gradient(135deg,var(–gold),#9a6e20); display:flex; align-items:center; justify-content:center; }
-.iv-big { font-family:‘Cormorant Garamond’,serif; font-size:3.2rem; font-weight:300; color:var(–white); line-height:1; }
+.iv-main { width:260px; height:300px; top:0; left:0; background:linear-gradient(135deg,#1B3A5C,#0d2135); display:flex; flex-direction:column; justify-content:flex-end; padding:28px; }
+.iv-accent { width:160px; height:180px; bottom:0; right:0; background:linear-gradient(135deg,#C9A84C,#9a6e20); display:flex; align-items:center; justify-content:center; }
+.iv-big { font-family:‘Cormorant Garamond’,serif; font-size:3.2rem; font-weight:300; color:#FFFFFF; line-height:1; }
 .iv-small { font-size:.52rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:4px; }
 .iv-mono { font-family:‘Cormorant Garamond’,serif; font-size:3.5rem; color:rgba(255,255,255,.9); }
 
 /* OFFERS */
-.offers-bg { background:var(–surface); }
-.offers-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(–border); border:1px solid var(–border); border-radius:6px; overflow:hidden; margin-top:56px; }
-.offer { background:var(–white); padding:44px 36px; transition:all .4s cubic-bezier(.16,1,.3,1); cursor:default; }
-.offer:hover { background:var(–navy); transform:translateY(-3px); z-index:2; box-shadow:0 24px 60px rgba(27,58,92,.2); }
+.offers-bg { background:#F8F6F2; }
+.offers-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:rgba(201,168,76,0.2); border:1px solid rgba(201,168,76,0.2); border-radius:6px; overflow:hidden; margin-top:56px; }
+.offer { background:#FFFFFF; padding:44px 36px; transition:all .4s cubic-bezier(.16,1,.3,1); cursor:default; }
+.offer:hover { background:#1B3A5C; transform:translateY(-3px); z-index:2; box-shadow:0 24px 60px rgba(27,58,92,.2); }
 .offer:hover .o-title,.offer:hover .o-desc,.offer:hover .o-feat { color:rgba(255,255,255,.8); }
-.offer:hover .o-price { color:var(–gold-light); }
-.offer:hover .o-tag { background:rgba(201,168,76,.15); color:var(–gold-light); }
+.offer:hover .o-price { color:#D4B87A; }
+.offer:hover .o-tag { background:rgba(201,168,76,.15); color:#D4B87A; }
 .offer:hover .o-div { background:rgba(255,255,255,.08); }
-.offer:hover .o-dot { background:var(–gold); }
-.o-num { font-family:‘Cormorant Garamond’,serif; font-size:.9rem; color:var(–gold); margin-bottom:20px; letter-spacing:.1em; }
-.o-title { font-family:‘Cormorant Garamond’,serif; font-size:1.5rem; font-weight:400; color:var(–navy); margin-bottom:6px; transition:color .4s; }
-.o-desc { font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(–muted); margin-bottom:24px; transition:color .4s; }
+.offer:hover .o-dot { background:#C9A84C; }
+.o-num { font-family:‘Cormorant Garamond’,serif; font-size:.9rem; color:#C9A84C; margin-bottom:20px; letter-spacing:.1em; }
+.o-title { font-family:‘Cormorant Garamond’,serif; font-size:1.5rem; font-weight:400; color:#1B3A5C; margin-bottom:6px; transition:color .4s; }
+.o-desc { font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:#6B7A8D; margin-bottom:24px; transition:color .4s; }
 .o-div { height:1px; background:rgba(201,168,76,.2); margin-bottom:20px; transition:background .4s; }
 .o-feats { list-style:none; margin-bottom:28px; }
-.o-feat { display:flex; align-items:flex-start; gap:10px; font-size:.78rem; line-height:1.6; color:var(–muted); margin-bottom:8px; transition:color .4s; }
-.o-dot { width:3px; height:3px; border-radius:50%; background:var(–gold); margin-top:7px; flex-shrink:0; transition:background .4s; }
-.o-price { font-family:‘Cormorant Garamond’,serif; font-size:1.9rem; font-weight:300; color:var(–navy); transition:color .4s; margin-bottom:4px; }
-.o-tag { display:inline-block; font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; background:var(–ecru); color:var(–gold); padding:4px 12px; border-radius:20px; transition:all .4s; }
+.o-feat { display:flex; align-items:flex-start; gap:10px; font-size:.78rem; line-height:1.6; color:#6B7A8D; margin-bottom:8px; transition:color .4s; }
+.o-dot { width:3px; height:3px; border-radius:50%; background:#C9A84C; margin-top:7px; flex-shrink:0; transition:background .4s; }
+.o-price { font-family:‘Cormorant Garamond’,serif; font-size:1.9rem; font-weight:300; color:#1B3A5C; transition:color .4s; margin-bottom:4px; }
+.o-tag { display:inline-block; font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; background:#F5F0E8; color:#C9A84C; padding:4px 12px; border-radius:20px; transition:all .4s; }
 
 /* DIFFERENTIATORS */
-.diff-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(–border); border:1px solid var(–border); border-radius:6px; overflow:hidden; margin-top:56px; }
-.diff-item { background:var(–white); padding:40px 32px; }
+.diff-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(201,168,76,0.2); border:1px solid rgba(201,168,76,0.2); border-radius:6px; overflow:hidden; margin-top:56px; }
+.diff-item { background:#FFFFFF; padding:40px 32px; }
 .diff-icon { font-size:1.4rem; margin-bottom:20px; }
-.diff-title { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; color:var(–navy); margin-bottom:10px; }
-.diff-body { font-size:.78rem; line-height:1.7; color:var(–muted); }
+.diff-title { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; color:#1B3A5C; margin-bottom:10px; }
+.diff-body { font-size:.78rem; line-height:1.7; color:#6B7A8D; }
 
 /* COMPETITOR */
-.comp-section { background:var(–navy); }
-.comp-section .h2 { color:var(–white); }
+.comp-section { background:#1B3A5C; }
+.comp-section .h2 { color:#FFFFFF; }
 .comp-section .body { color:rgba(255,255,255,.45); }
-.comp-section .label { color:var(–gold); }
+.comp-section .label { color:#C9A84C; }
 .comp-section .gold-line { background:rgba(201,168,76,.3); }
 .comp-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; margin-top:56px; background:rgba(255,255,255,.05); }
 .comp-col { padding:40px 32px; }
 .comp-col:first-child { background:rgba(255,255,255,.03); }
 .comp-col:nth-child(2) { background:rgba(255,255,255,.03); }
-.comp-col:last-child { background:rgba(201,168,76,.06); border-top:2px solid var(–gold); }
+.comp-col:last-child { background:rgba(201,168,76,.06); border-top:2px solid #C9A84C; }
 .comp-badge { font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; padding:5px 14px; border-radius:30px; display:inline-block; margin-bottom:24px; }
 .comp-col:not(:last-child) .comp-badge { background:rgba(255,255,255,.06); color:rgba(255,255,255,.3); }
-.comp-col:last-child .comp-badge { background:rgba(201,168,76,.15); color:var(–gold); }
+.comp-col:last-child .comp-badge { background:rgba(201,168,76,.15); color:#C9A84C; }
 .comp-name { font-family:‘Cormorant Garamond’,serif; font-size:1.2rem; margin-bottom:8px; }
 .comp-col:not(:last-child) .comp-name { color:rgba(255,255,255,.5); }
-.comp-col:last-child .comp-name { color:var(–white); }
+.comp-col:last-child .comp-name { color:#FFFFFF; }
 .comp-row { display:flex; gap:10px; margin-bottom:10px; font-size:.75rem; line-height:1.5; }
 .comp-col:not(:last-child) .comp-row { color:rgba(255,255,255,.3); }
 .comp-col:last-child .comp-row { color:rgba(255,255,255,.7); }
 .ci { flex-shrink:0; margin-top:2px; }
 .ci-no { color:rgba(255,255,255,.2); }
-.ci-yes { color:var(–gold); }
+.ci-yes { color:#C9A84C; }
 
 /* PARTNERSHIP — deux cas */
 .cases-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:56px; }
 .case-card { padding:52px 44px; position:relative; overflow:hidden; }
-.case-a { background:var(–surface); border:1px solid var(–border); }
-.case-b { background:var(–navy); }
+.case-a { background:#F8F6F2; border:1px solid rgba(201,168,76,0.2); }
+.case-b { background:#1B3A5C; }
 .case-card::before { content:’’; position:absolute; top:0; left:0; right:0; height:3px; }
 .case-a::before { background:rgba(201,168,76,.3); }
-.case-b::before { background:var(–gold); }
+.case-b::before { background:#C9A84C; }
 .case-num { font-family:‘Cormorant Garamond’,serif; font-size:5rem; font-weight:300; line-height:1; margin-bottom:4px; }
 .case-a .case-num { color:rgba(27,58,92,.1); }
 .case-b .case-num { color:rgba(255,255,255,.1); }
 .case-badge { font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; padding:5px 14px; border-radius:30px; display:inline-block; margin-bottom:24px; }
-.case-a .case-badge { background:var(–ecru); color:var(–muted); }
-.case-b .case-badge { background:rgba(201,168,76,.15); color:var(–gold); }
+.case-a .case-badge { background:#F5F0E8; color:#6B7A8D; }
+.case-b .case-badge { background:rgba(201,168,76,.15); color:#C9A84C; }
 .case-title { font-family:‘Cormorant Garamond’,serif; font-size:1.4rem; margin-bottom:12px; }
-.case-a .case-title { color:var(–navy); }
-.case-b .case-title { color:var(–white); }
+.case-a .case-title { color:#1B3A5C; }
+.case-b .case-title { color:#FFFFFF; }
 .case-desc { font-size:.8rem; line-height:1.8; margin-bottom:28px; }
-.case-a .case-desc { color:var(–muted); }
+.case-a .case-desc { color:#6B7A8D; }
 .case-b .case-desc { color:rgba(255,255,255,.5); }
 .case-rows { border-top:1px solid; padding-top:24px; }
 .case-a .case-rows { border-color:rgba(27,58,92,.08); }
 .case-b .case-rows { border-color:rgba(255,255,255,.08); }
 .case-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
 .case-row-label { font-size:.75rem; }
-.case-a .case-row-label { color:var(–muted); }
+.case-a .case-row-label { color:#6B7A8D; }
 .case-b .case-row-label { color:rgba(255,255,255,.4); }
 .case-row-val { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; }
-.case-a .case-row-val { color:var(–navy); }
-.case-b .case-row-val { color:var(–gold-light); }
+.case-a .case-row-val { color:#1B3A5C; }
+.case-b .case-row-val { color:#D4B87A; }
 .case-highlight { margin-top:24px; padding:16px 20px; border-radius:4px; }
-.case-a .case-highlight { background:var(–ecru); }
+.case-a .case-highlight { background:#F5F0E8; }
 .case-b .case-highlight { background:rgba(201,168,76,.1); }
 .case-hl-label { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:4px; }
-.case-a .case-hl-label { color:var(–muted); }
-.case-b .case-hl-label { color:var(–gold); }
+.case-a .case-hl-label { color:#6B7A8D; }
+.case-b .case-hl-label { color:#C9A84C; }
 .case-hl-val { font-family:‘Cormorant Garamond’,serif; font-size:1.8rem; }
-.case-a .case-hl-val { color:var(–navy); }
-.case-b .case-hl-val { color:var(–white); }
+.case-a .case-hl-val { color:#1B3A5C; }
+.case-b .case-hl-val { color:#FFFFFF; }
 
 /* ASSURANCE */
 .assur-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:56px; }
-.assur-card { padding:36px; border-radius:4px; border:1px solid var(–border); }
-.assur-card.featured { background:var(–ecru); border-color:rgba(201,168,76,.3); }
-.assur-who { font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:var(–gold); margin-bottom:16px; }
-.assur-title { font-family:‘Cormorant Garamond’,serif; font-size:1.2rem; color:var(–navy); margin-bottom:12px; }
-.assur-item { display:flex; gap:10px; margin-bottom:10px; font-size:.8rem; color:var(–muted); line-height:1.5; }
-.assur-check { color:var(–gold); flex-shrink:0; }
+.assur-card { padding:36px; border-radius:4px; border:1px solid rgba(201,168,76,0.2); }
+.assur-card.featured { background:#F5F0E8; border-color:rgba(201,168,76,.3); }
+.assur-who { font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:#C9A84C; margin-bottom:16px; }
+.assur-title { font-family:‘Cormorant Garamond’,serif; font-size:1.2rem; color:#1B3A5C; margin-bottom:12px; }
+.assur-item { display:flex; gap:10px; margin-bottom:10px; font-size:.8rem; color:#6B7A8D; line-height:1.5; }
+.assur-check { color:#C9A84C; flex-shrink:0; }
 .assur-cost { margin-top:20px; padding-top:16px; border-top:1px solid rgba(27,58,92,.08); }
-.assur-cost-label { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(–muted); }
-.assur-cost-val { font-family:‘Cormorant Garamond’,serif; font-size:1.4rem; color:var(–navy); }
+.assur-cost-label { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:#6B7A8D; }
+.assur-cost-val { font-family:‘Cormorant Garamond’,serif; font-size:1.4rem; color:#1B3A5C; }
 
 /* FORECAST */
-.fc-section { background:var(–surface); }
-.fc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(–border); border:1px solid var(–border); border-radius:6px; overflow:hidden; margin-top:56px; }
-.fc-card { background:var(–white); padding:44px 36px; }
-.fc-card.feat { background:var(–navy); }
+.fc-section { background:#F8F6F2; }
+.fc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:rgba(201,168,76,0.2); border:1px solid rgba(201,168,76,0.2); border-radius:6px; overflow:hidden; margin-top:56px; }
+.fc-card { background:#FFFFFF; padding:44px 36px; }
+.fc-card.feat { background:#1B3A5C; }
 .fc-badge { font-size:.55rem; letter-spacing:.25em; text-transform:uppercase; padding:5px 14px; border-radius:30px; display:inline-block; margin-bottom:28px; }
-.fc-card:not(.feat) .fc-badge { background:var(–ecru); color:var(–muted); }
-.fc-card.feat .fc-badge { background:rgba(201,168,76,.15); color:var(–gold); }
+.fc-card:not(.feat) .fc-badge { background:#F5F0E8; color:#6B7A8D; }
+.fc-card.feat .fc-badge { background:rgba(201,168,76,.15); color:#C9A84C; }
 .fc-scenario { font-family:‘Cormorant Garamond’,serif; font-size:1.4rem; margin-bottom:6px; }
-.fc-card:not(.feat) .fc-scenario { color:var(–navy); }
-.fc-card.feat .fc-scenario { color:var(–white); }
+.fc-card:not(.feat) .fc-scenario { color:#1B3A5C; }
+.fc-card.feat .fc-scenario { color:#FFFFFF; }
 .fc-sub { font-size:.7rem; margin-bottom:32px; }
-.fc-card:not(.feat) .fc-sub { color:var(–muted); }
+.fc-card:not(.feat) .fc-sub { color:#6B7A8D; }
 .fc-card.feat .fc-sub { color:rgba(255,255,255,.35); }
 .fc-div { height:1px; margin-bottom:24px; }
 .fc-card:not(.feat) .fc-div { background:rgba(27,58,92,.07); }
 .fc-card.feat .fc-div { background:rgba(255,255,255,.07); }
 .fc-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
 .fc-rl { font-size:.75rem; }
-.fc-card:not(.feat) .fc-rl { color:var(–muted); }
+.fc-card:not(.feat) .fc-rl { color:#6B7A8D; }
 .fc-card.feat .fc-rl { color:rgba(255,255,255,.4); }
 .fc-rv { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; }
-.fc-card:not(.feat) .fc-rv { color:var(–navy); }
-.fc-card.feat .fc-rv { color:var(–gold-light); }
+.fc-card:not(.feat) .fc-rv { color:#1B3A5C; }
+.fc-card.feat .fc-rv { color:#D4B87A; }
 .fc-total { margin-top:24px; padding:16px 20px; border-radius:4px; }
-.fc-card:not(.feat) .fc-total { background:var(–ecru); }
+.fc-card:not(.feat) .fc-total { background:#F5F0E8; }
 .fc-card.feat .fc-total { background:rgba(201,168,76,.12); }
-.fc-tl { font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; color:var(–gold); margin-bottom:4px; }
+.fc-tl { font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; color:#C9A84C; margin-bottom:4px; }
 .fc-tv { font-family:‘Cormorant Garamond’,serif; font-size:2rem; }
-.fc-card:not(.feat) .fc-tv { color:var(–navy); }
-.fc-card.feat .fc-tv { color:var(–white); }
+.fc-card:not(.feat) .fc-tv { color:#1B3A5C; }
+.fc-card.feat .fc-tv { color:#FFFFFF; }
 
 /* TVA NOTE */
-.tva-note { margin-top:32px; padding:24px 28px; border-left:3px solid var(–gold); background:var(–ecru); border-radius:0 4px 4px 0; }
-.tva-title { font-family:‘Cormorant Garamond’,serif; font-size:1rem; color:var(–navy); margin-bottom:8px; }
-.tva-body { font-size:.78rem; line-height:1.75; color:var(–muted); }
+.tva-note { margin-top:32px; padding:24px 28px; border-left:3px solid #C9A84C; background:#F5F0E8; border-radius:0 4px 4px 0; }
+.tva-title { font-family:‘Cormorant Garamond’,serif; font-size:1rem; color:#1B3A5C; margin-bottom:8px; }
+.tva-body { font-size:.78rem; line-height:1.75; color:#6B7A8D; }
 
 /* REVERSEMENT */
-.rev-section { background:var(–white); }
+.rev-section { background:#FFFFFF; }
 .rev-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:56px; }
-.rev-block { padding:40px; border:1px solid var(–border); border-radius:4px; }
-.rev-block.gold { border-color:rgba(201,168,76,.4); background:var(–ecru); }
-.rev-title { font-family:‘Cormorant Garamond’,serif; font-size:1.2rem; color:var(–navy); margin-bottom:8px; }
-.rev-body { font-size:.8rem; line-height:1.75; color:var(–muted); margin-bottom:20px; }
-.rev-tag { display:inline-block; font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; background:rgba(201,168,76,.15); color:var(–gold); padding:4px 14px; border-radius:20px; }
+.rev-block { padding:40px; border:1px solid rgba(201,168,76,0.2); border-radius:4px; }
+.rev-block.gold { border-color:rgba(201,168,76,.4); background:#F5F0E8; }
+.rev-title { font-family:‘Cormorant Garamond’,serif; font-size:1.2rem; color:#1B3A5C; margin-bottom:8px; }
+.rev-body { font-size:.8rem; line-height:1.75; color:#6B7A8D; margin-bottom:20px; }
+.rev-tag { display:inline-block; font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; background:rgba(201,168,76,.15); color:#C9A84C; padding:4px 14px; border-radius:20px; }
 
 /* EXAMPLE STATEMENT */
-.statement { margin-top:40px; background:var(–navy); border-radius:6px; padding:40px; }
-.stmt-title { font-size:.58rem; letter-spacing:.35em; text-transform:uppercase; color:var(–gold); margin-bottom:24px; }
+.statement { margin-top:40px; background:#1B3A5C; border-radius:6px; padding:40px; }
+.stmt-title { font-size:.58rem; letter-spacing:.35em; text-transform:uppercase; color:#C9A84C; margin-bottom:24px; }
 .stmt-rows { display:grid; gap:0; }
 .stmt-row { display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.06); }
 .stmt-row:last-child { border-bottom:none; }
 .stmt-label { font-size:.8rem; color:rgba(255,255,255,.4); }
 .stmt-val { font-family:‘Cormorant Garamond’,serif; font-size:1rem; }
-.stmt-val.pos { color:var(–gold-light); }
+.stmt-val.pos { color:#D4B87A; }
 .stmt-val.neg { color:rgba(255,255,255,.4); }
-.stmt-val.total { color:var(–white); font-size:1.3rem; }
+.stmt-val.total { color:#FFFFFF; font-size:1.3rem; }
 
 /* NO CAUTION */
-.nocaution { background:var(–navy); padding:80px 0; }
+.nocaution { background:#1B3A5C; padding:80px 0; }
 .nc-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
 .nc-number { font-family:‘Cormorant Garamond’,serif; font-size:6rem; font-weight:300; color:rgba(255,255,255,.08); line-height:1; }
-.nc-number span { color:var(–gold); opacity:.6; }
-.nc-title { font-family:‘Cormorant Garamond’,serif; font-size:2rem; font-weight:300; color:var(–white); margin-bottom:12px; }
+.nc-number span { color:#C9A84C; opacity:.6; }
+.nc-title { font-family:‘Cormorant Garamond’,serif; font-size:2rem; font-weight:300; color:#FFFFFF; margin-bottom:12px; }
 .nc-body { font-size:.82rem; line-height:1.8; color:rgba(255,255,255,.45); }
 .nc-vs { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:28px; }
 .nc-vs-item { padding:16px; border-radius:4px; }
@@ -282,26 +282,26 @@ section { padding:120px 0; }
 .nc-vs-item.good { background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.2); }
 .nc-vs-label { font-size:.56rem; letter-spacing:.25em; text-transform:uppercase; margin-bottom:6px; }
 .bad .nc-vs-label { color:rgba(255,255,255,.2); }
-.good .nc-vs-label { color:var(–gold); }
+.good .nc-vs-label { color:#C9A84C; }
 .nc-vs-val { font-size:.82rem; }
 .bad .nc-vs-val { color:rgba(255,255,255,.3); }
 .good .nc-vs-val { color:rgba(255,255,255,.7); }
 
 /* TIMELINE */
 .tl { position:relative; padding-left:36px; margin-top:56px; }
-.tl::before { content:’’; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:linear-gradient(to bottom,var(–gold),rgba(201,168,76,.1)); }
+.tl::before { content:’’; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:linear-gradient(to bottom,#C9A84C,rgba(201,168,76,.1)); }
 .tl-item { position:relative; padding:0 0 44px 36px; opacity:0; transform:translateX(-16px); transition:opacity .6s,transform .6s; }
 .tl-item.v { opacity:1; transform:none; }
-.tl-dot { position:absolute; left:-5px; top:6px; width:11px; height:11px; border-radius:50%; border:2px solid var(–gold); background:var(–white); transition:background .3s; }
-.tl-item:hover .tl-dot { background:var(–gold); }
-.tl-date { font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:var(–gold); margin-bottom:6px; }
-.tl-action { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; color:var(–navy); margin-bottom:4px; }
-.tl-who { font-size:.75rem; color:var(–muted); }
+.tl-dot { position:absolute; left:-5px; top:6px; width:11px; height:11px; border-radius:50%; border:2px solid #C9A84C; background:#FFFFFF; transition:background .3s; }
+.tl-item:hover .tl-dot { background:#C9A84C; }
+.tl-date { font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:#C9A84C; margin-bottom:6px; }
+.tl-action { font-family:‘Cormorant Garamond’,serif; font-size:1.1rem; color:#1B3A5C; margin-bottom:4px; }
+.tl-who { font-size:.75rem; color:#6B7A8D; }
 
 /* CLOSING */
-.closing { background:var(–navy); padding:160px 0; text-align:center; position:relative; overflow:hidden; }
-.closing-q { font-family:‘Cormorant Garamond’,serif; font-size:clamp(1.6rem,3.5vw,2.8rem); font-weight:300; font-style:italic; color:var(–white); max-width:580px; margin:0 auto 36px; line-height:1.4; }
-.closing-tag { font-size:.62rem; letter-spacing:.5em; text-transform:uppercase; color:var(–gold); margin-bottom:56px; }
+.closing { background:#1B3A5C; padding:160px 0; text-align:center; position:relative; overflow:hidden; }
+.closing-q { font-family:‘Cormorant Garamond’,serif; font-size:clamp(1.6rem,3.5vw,2.8rem); font-weight:300; font-style:italic; color:#FFFFFF; max-width:580px; margin:0 auto 36px; line-height:1.4; }
+.closing-tag { font-size:.62rem; letter-spacing:.5em; text-transform:uppercase; color:#C9A84C; margin-bottom:56px; }
 .closing-contact { font-size:.72rem; letter-spacing:.15em; color:rgba(255,255,255,.25); line-height:2.2; }
 
 footer { background:#081929; padding:36px 64px; display:flex; justify-content:space-between; align-items:center; }
@@ -369,7 +369,7 @@ footer { flex-direction:column; gap:10px; text-align:center; }
         <h2 class="h2 r d1">L'expérience nautique<br><em>premium</em> à Carnon.</h2>
         <div class="gold-line r d2"></div>
         <p class="body r d2">Harmonie Yacht est une marque premium d'expériences nautiques méditerranéennes, opérée par Harmonie Group SASU. Notre positionnement : le luxe accessible — chic, chaleureux, mémorable.</p>
-        <p class="body r d3" style="margin-top:14px">Nous ne proposons pas une simple location de bateau. Nous vendons des <strong style="color:var(--navy);font-weight:500">expériences guidées</strong> avec une monitrice professionnelle à bord — accessible à tous, sans permis requis côté client.</p>
+        <p class="body r d3" style="margin-top:14px">Nous ne proposons pas une simple location de bateau. Nous vendons des <strong style="color:#1B3A5C;font-weight:500">expériences guidées</strong> avec une monitrice professionnelle à bord — accessible à tous, sans permis requis côté client.</p>
         <p class="body r d4" style="margin-top:14px">C'est ce qui nous distingue radicalement de la concurrence locale — et c'est ce qui justifie nos tarifs premium.</p>
       </div>
       <div class="intro-visual r d2">
@@ -399,32 +399,32 @@ footer { flex-direction:column; gap:10px; text-align:center; }
   <div class="comp-col">
     <div class="comp-badge">Concurrent</div>
     <div class="comp-name">Ô Boat</div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Permis obligatoire côté client</span></div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Monitrice non incluse</span></div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Caution jusqu'à 3 000€</span></div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Bouée tractée en option basique</span></div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Aucun service à bord</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Permis obligatoire côté client</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Monitrice non incluse</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Caution jusqu'à 3 000€</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Bouée tractée en option basique</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Aucun service à bord</span></div>
     <div style="margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:rgba(255,255,255,.2);">160–360€</div>
   </div>
   <div class="comp-col">
     <div class="comp-badge">Concurrent</div>
     <div class="comp-name">Rent My Boat</div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Permis obligatoire côté client</span></div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Aucun encadrement</span></div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Caution jusqu'à 3 000€</span></div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Grille tarifaire froide, aucune émotion</span></div>
-    <div class="comp-row"><span class="ci ci-no">✕</span><span>Aucune offre événementielle</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Permis obligatoire côté client</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Aucun encadrement</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Caution jusqu'à 3 000€</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Grille tarifaire froide, aucune émotion</span></div>
+    <div class="comp-row"><span class="ci ci-no">✕#x2715;</span><span>Aucune offre événementielle</span></div>
     <div style="margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:rgba(255,255,255,.2);">140–579€</div>
   </div>
   <div class="comp-col">
-    <div class="comp-badge">⭑ Harmonie Yacht</div>
+    <div class="comp-badge">* Harmonie Yacht</div>
     <div class="comp-name">Notre offre</div>
-    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Aucun permis requis côté client</span></div>
-    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Monitrice professionnelle RC Pro à bord</span></div>
-    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Zéro caution — friction zéro</span></div>
-    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Sessions wake & bouée encadrées</span></div>
-    <div class="comp-row"><span class="ci ci-yes">✓</span><span>Options food La Table d'Isa</span></div>
-    <div style="margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);">260–390€</div>
+    <div class="comp-row"><span class="ci ci-yes">✓#x2713;</span><span>Aucun permis requis côté client</span></div>
+    <div class="comp-row"><span class="ci ci-yes">✓#x2713;</span><span>Monitrice professionnelle RC Pro à bord</span></div>
+    <div class="comp-row"><span class="ci ci-yes">✓#x2713;</span><span>Zéro caution — friction zéro</span></div>
+    <div class="comp-row"><span class="ci ci-yes">✓#x2713;</span><span>Sessions wake & bouée encadrées</span></div>
+    <div class="comp-row"><span class="ci ci-yes">✓#x2713;</span><span>Options food La Table d'Isa</span></div>
+    <div style="margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#C9A84C;">260–390€</div>
   </div>
 </div>
 ```
@@ -516,7 +516,7 @@ footer { flex-direction:column; gap:10px; text-align:center; }
         <div class="nc-number r"><span>0</span>€</div>
       </div>
       <div class="r d2">
-        <div class="label" style="color:var(--gold)">Notre argument clé</div>
+        <div class="label" style="color:#C9A84C">Notre argument clé</div>
         <div class="nc-title">Zéro caution.<br>Zéro friction.</div>
         <p class="nc-body">La concurrence demande entre 1 500€ et 3 000€ de caution. C'est la première raison d'abandon d'une réservation. Nous avons supprimé cette barrière — ce qui se traduit directement par un taux de conversion supérieur et donc plus de jours réservés pour votre bateau.</p>
         <div class="nc-vs">
@@ -564,11 +564,11 @@ footer { flex-direction:column; gap:10px; text-align:center; }
 
   <div class="case-card case-b">
     <div class="case-num">02</div>
-    <div class="case-badge">⭑ Sous-location — Recommandé</div>
+    <div class="case-badge">* Sous-location — Recommandé</div>
     <div class="case-title">Loyer fixe garanti</div>
     <p class="case-desc">Harmonie Yacht vous loue le bateau à un tarif fixe journalier sur les jours d'exploitation. Vous touchez votre loyer que le bateau soit plein ou non. Revenu prévisible, risque zéro.</p>
     <div class="case-rows">
-      <div class="case-row"><span class="case-row-label">Loyer journalier</span><span class="case-row-val" style="color:var(--gold);font-style:italic">À définir ensemble</span></div>
+      <div class="case-row"><span class="case-row-label">Loyer journalier</span><span class="case-row-val" style="color:#C9A84C;font-style:italic">À définir ensemble</span></div>
       <div class="case-row"><span class="case-row-label">Jours d'exploitation prévus</span><span class="case-row-val">~75 jours</span></div>
       <div class="case-row"><span class="case-row-label">Versement</span><span class="case-row-val">Mensuel, fixe</span></div>
       <div class="case-row"><span class="case-row-label">Risque saison creuse</span><span class="case-row-val">Zéro pour vous</span></div>
@@ -586,7 +586,7 @@ footer { flex-direction:column; gap:10px; text-align:center; }
 
 <!-- ASSURANCES -->
 
-<section style="background:var(--surface);padding:100px 0;">
+<section style="background:#F8F6F2;padding:100px 0;">
   <div class="container">
     <div class="label r">Assurances</div>
     <h2 class="h2 r d1">Ce que chacun<br><em>prend en charge</em>.</h2>
@@ -610,12 +610,12 @@ footer { flex-direction:column; gap:10px; text-align:center; }
   <div class="assur-card">
     <div class="assur-who">Notre responsabilité</div>
     <div class="assur-title">RC Exploitation — prise en charge totale</div>
-    <div class="assur-item"><span class="assur-check" style="color:var(--gold)">→</span><span>Harmonie Yacht souscrit la RC exploitation couvrant les activités à bord</span></div>
-    <div class="assur-item"><span class="assur-check" style="color:var(--gold)">→</span><span>La monitrice dispose de sa propre RC Pro couvrant les sessions wake & bouée tractée</span></div>
-    <div class="assur-item"><span class="assur-check" style="color:var(--gold)">→</span><span>Vous fournissez une attestation d'assurance coque valide — c'est tout</span></div>
+    <div class="assur-item"><span class="assur-check" style="color:#C9A84C">→</span><span>Harmonie Yacht souscrit la RC exploitation couvrant les activités à bord</span></div>
+    <div class="assur-item"><span class="assur-check" style="color:#C9A84C">→</span><span>La monitrice dispose de sa propre RC Pro couvrant les sessions wake & bouée tractée</span></div>
+    <div class="assur-item"><span class="assur-check" style="color:#C9A84C">→</span><span>Vous fournissez une attestation d'assurance coque valide — c'est tout</span></div>
     <div class="assur-cost">
       <div class="assur-cost-label">Coût pour vous</div>
-      <div class="assur-cost-val" style="color:var(--gold)">0€ supplémentaire</div>
+      <div class="assur-cost-val" style="color:#C9A84C">0€ supplémentaire</div>
     </div>
   </div>
 </div>
@@ -669,7 +669,7 @@ footer { flex-direction:column; gap:10px; text-align:center; }
     <div class="fc-sub">2 sorties/j · palier 60/40 atteint</div>
     <div class="fc-div"></div>
     <div class="fc-row"><span class="fc-rl">CA HT total estimé</span><span class="fc-rv">24 800€</span></div>
-    <div class="fc-row"><span class="fc-rl">Palier atteint</span><span class="fc-rv">60/40 ✓</span></div>
+    <div class="fc-row"><span class="fc-rl">Palier atteint</span><span class="fc-rv">60/40 ✓#x2713;</span></div>
     <div class="fc-row"><span class="fc-rl">Votre part (40%)</span><span class="fc-rv">9 920€</span></div>
     <div class="fc-total">
       <div class="fc-tl">Votre revenu net estimé</div>
@@ -683,7 +683,7 @@ footer { flex-direction:column; gap:10px; text-align:center; }
     <div class="fc-sub">2,5 sorties/j · pleine saison</div>
     <div class="fc-div"></div>
     <div class="fc-row"><span class="fc-rl">CA HT total estimé</span><span class="fc-rv">46 500€</span></div>
-    <div class="fc-row"><span class="fc-rl">Palier atteint</span><span class="fc-rv">60/40 ✓</span></div>
+    <div class="fc-row"><span class="fc-rl">Palier atteint</span><span class="fc-rv">60/40 ✓#x2713;</span></div>
     <div class="fc-row"><span class="fc-rl">Votre part (40%)</span><span class="fc-rv">18 600€</span></div>
     <div class="fc-total">
       <div class="fc-tl">Votre revenu net estimé</div>
@@ -741,7 +741,7 @@ footer { flex-direction:column; gap:10px; text-align:center; }
 
 <!-- TIMELINE -->
 
-<section style="background:var(--surface);padding:100px 0;">
+<section style="background:#F8F6F2;padding:100px 0;">
   <div class="container">
     <div class="label r">Calendrier</div>
     <h2 class="h2 r d1">De la signature<br>au <em>premier départ</em>.</h2>
@@ -751,7 +751,7 @@ footer { flex-direction:column; gap:10px; text-align:center; }
       <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Semaine 2</div><div class="tl-action">Modification de votre avenant assurance</div><div class="tl-who">Votre assureur — démarche simple</div></div>
       <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Semaine 3</div><div class="tl-action">Shooting photo & vidéo du semi-rigide</div><div class="tl-who">Harmonie Yacht — à votre convenance</div></div>
       <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Semaine 4</div><div class="tl-action">Mise en ligne des offres & ouverture des réservations</div><div class="tl-who">Harmonie Yacht</div></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">1er Juin 2025</div><div class="tl-action">Lancement de la saison — première sortie officielle</div><div class="tl-who" style="color:var(--gold)">Ensemble 🥂</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">1er Juin 2025</div><div class="tl-action">Lancement de la saison — première sortie officielle</div><div class="tl-who" style="color:#C9A84C">Ensemble 🥂</div></div>
     </div>
   </div>
 </section>
